@@ -1,8 +1,6 @@
 # DiRT 2 Save Converter (Xbox 360 → PC)
 
-Move your **Colin McRae: DiRT 2** (2009) career from the Xbox 360 to the PC version:
-XP and level, money, unlocked cars, liveries and events, race history, car setups and
-everything else the game stores in its save.
+Move your **Colin McRae: DiRT 2** (2009) career from the Xbox 360 to the PC version: XP and level, money, unlocked cars, liveries and events, race history, car setups and everything else the game stores in its save.
 
 > How the save format was cracked, and why the conversion works the way it does:
 > [docs/HOW_IT_WAS_MADE.md](docs/HOW_IT_WAS_MADE.md)
@@ -19,22 +17,15 @@ everything else the game stores in its save.
 | **A USB mass storage device** | A USB stick or drive that the Xbox 360 can use as storage. This is how the save gets from the console to the PC. |
 | **A Windows PC with Python 3.9 or newer** | Get Python from [python.org](https://www.python.org/downloads/) and tick "Add python.exe to PATH" during install. |
 
-**Regions:** the tool should work with a DiRT 2 save from any region, but only one region has
-been tested so far. If your save isn't detected, see [Troubleshooting](#troubleshooting).
+**Regions:** the tool should work with a DiRT 2 save from any region - the NTSC and PAL copies are identical from my research. If your save isn't detected, see [Troubleshooting](#troubleshooting).
 
 ---
 
 ## How it works
 
-DiRT 2 saves are a set of small objects (career, unlocks, race history, ...). Each one is
-AES-256 encrypted and serialised in the platform's native byte order: big-endian on the
-Xbox 360, little-endian on PC. The encryption, the container format and the file-name
-scrambling are handled offline by this tool. Rewriting every field in the opposite byte
-order offline would mean knowing the exact layout of every object. Many of those layouts
-depend on the game's own data tables.
+DiRT 2 saves are a set of small objects (career, unlocks, race history, ...). Each one is AES-256 encrypted and serialised in the platform's native byte order: big-endian on the Xbox 360, little-endian on PC. The encryption, the container format and the file-name scrambling are handled offline by this tool. Rewriting every field in the opposite byte order offline would mean knowing the exact layout of every object. Many of those layouts depend on the game's own data tables.
 
-So, this tool lets **the PC game do the parsing**. While the game loads the staged save,
-`assist` hooks the game's save-stream read function and byte-swaps each value at the moment it's read. The game ends up with your 360 career in memory, and its next save writes a normal PC save. Full details are in [docs/HOW_IT_WAS_MADE.md](docs/HOW_IT_WAS_MADE.md).
+So, this tool lets **the PC game do the parsing**. While the game loads the staged save, `assist` hooks the game's save-stream read function and byte-swaps each value at the moment it's read. The game ends up with your 360 career in memory, and its next save writes a normal PC save. Full details are in [docs/HOW_IT_WAS_MADE.md](docs/HOW_IT_WAS_MADE.md).
 
 ## Commands
 
@@ -70,19 +61,15 @@ docs/             write-up of how the format was reverse engineered
 
 ## Disclaimer
 
-This project includes no game files. You need your own copies of the game. It is not
-affiliated with Codemasters. Back up your saves; use at your own risk.
+This project includes no game files. You need your own copies of the game. It is not affiliated with Codemasters. Back up your saves; use at your own risk.
 
 
 ## File transfer, installation and conversion process
 
 ### Part 1: Copy the save off the Xbox 360
 
-1. Plug the USB storage device into the Xbox 360. If the console hasn't used it before, it
-   will offer to **configure it as a storage device**. Accept. This formats the drive, so
-   copy anything you want to keep off it first.
-2. Boot the Xbox 360 and go to **Settings**, then **Storage** (on newer dashboards this is
-   **Settings > System > Storage**).
+1. Plug the USB storage device into the Xbox 360. If the console hasn't used it before, it will offer to **configure it as a storage device**. Accept. This formats the drive, so copy anything you want to keep off it first.
+2. Boot the Xbox 360 and go to **Settings**, then **Storage** (on newer dashboards this is **Settings > System > Storage**).
 3. Select the storage device that holds your DiRT 2 save. Depending on where you saved, it's one of:
    - **Hard Drive** (internal HDD)
    - **Memory Unit / flash memory**
@@ -119,16 +106,13 @@ Or if you wish to manually backup the save file - keep a copy of the original sa
 
 #### Installation - one-time setup
 
-1. **Install DiRT 2 on the PC and run it once.** Create a profile, get to the main menu so
-   the game autosaves, then quit. The converter needs this fresh PC save, because a few PC-only parts (controller bindings, online data) are kept from it.
+1. **Install DiRT 2 on the PC and run it once.** Create a profile, get to the main menu so the game autosaves, then quit. The converter needs this fresh PC save, because a few PC-only parts (controller bindings, online data) are kept from it.
 2. **Run this tool.** Download or clone this repository, open a terminal (PowerShell) in the repo folder, and run:
    ```powershell
    pip install -r requirements.txt
    ```
-   This installs [Frida](https://frida.re), which the converter uses to hook the game while it
-   loads the save (see [How it works](#how-it-works)).
-3. *(Optional)* If your save folder or setup is unusual, copy `.env.example` to `.env` and
-   adjust it. On a normal Windows install the defaults work out of the box.
+   This installs [Frida](https://frida.re), which the converter uses to hook the game while it loads the save (see [How it works](#how-it-works)).
+3. *(Optional)* If your save folder or setup is unusual, copy `.env.example` to `.env` and adjust it. On a normal Windows install the defaults work out of the box.
 
 #### Convert
 
@@ -148,8 +132,7 @@ Or if you wish to manually backup the save file - keep a copy of the original sa
    ```
    - When it says `Waiting for dirt2_game.exe`, start DiRT 2 as you normally would.
    - Let your profile load. You should see your 360 driver name and progress.
-   - **Make the game save.** Finishing an event is best (it saves career, history and rewards),
-     or save the profile from the menu.
+   - **Make the game save.** Finishing an event is best (it saves career, history and rewards), or save the profile from the menu.
    - Quit the game.
 
    The tool then checks the slot and should report `format : native PC save`.
@@ -169,13 +152,8 @@ Or if you wish to manually backup the save file - keep a copy of the original sa
 
 ## Troubleshooting
 
-- **`No Xbox 360 DiRT 2 save found`**: the save folder is hidden. Turn on "Hidden items" in
-  Explorer and check the USB device has a `Content` (or `Xbox360\Content`) folder.
-  Saves from other regions may use a different title id. Find the folder under
-  `Content\<profile id>\` that holds your save, then either pass the file path to
-  `prepare`, or add the title id to `.env` with
-  `DIRT2_X360_TITLE_IDS=434D0819,XXXXXXXX`. Please open an issue with the id so it can be
-  added.
+- **`No Xbox 360 DiRT 2 save found`**: the save folder is hidden. Turn on "Hidden items" in Explorer and check the USB device has a `Content` (or `Xbox360\Content`) folder. 
+    - **Note: saves from other regions may use a different title id:** Find the folder under  `Content\<profile id>\` that holds your save, then either pass the file path to  `prepare`, or add the title id to `.env` with  `DIRT2_X360_TITLE_IDS=434D0819,XXXXXXXX`. Please open an issue with the id so it can be added.
 - **`different build ... hook addresses don't match`**: your `dirt2_game.exe` isn't the
   build the tool was made for. The hook addresses only fit one build. Use the recommended
   copy, or open an issue with your exe's SHA-256.
@@ -189,3 +167,7 @@ Or if you wish to manually backup the save file - keep a copy of the original sa
 
 ---
 
+## Future Roadmap
+
+- [ ] Test and confirm game works with unmodified retail copies of Dirt 2 for PC.
+- [ ] Create a dirt2-save-converter.exe with a GUI to make the process more friendly.
