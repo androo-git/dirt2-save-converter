@@ -169,6 +169,6 @@ Or if you wish to manually backup the save file - keep a copy of the original sa
 
 ## Future Roadmap
 
-- [ ] Test and confirm game works with unmodified retail copies of Dirt 2 for PC.
-- [ ] Create a dirt2-save-converter.exe with a GUI to make the process more friendly.
+- [ ] Test and confirm game works with unmodified retail copies of Dirt 2 for PC. Current version must have a checksum that matches exactly to Rohan Kar's version!
 - [ ] Add functionality to convert PC save to xbox 360 friendly format. 
+- [ ] Create a dirt2-save-converter.exe with a GUI to make the process more friendly.
