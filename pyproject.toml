@@ -1,0 +1,24 @@
+[project]
+name = "dirt2-save-converter"
+version = "0.2.0"
+description = "Convert Colin McRae: DiRT 2 save games from Xbox 360 to PC"
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+requires-python = ">=3.9"
+dependencies = ["frida>=16"]
+
+[project.optional-dependencies]
+dev = ["capstone>=5", "pycryptodome>=3.18"]
+
+[project.scripts]
+dirt2conv = "dirt2conv.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["dirt2conv*"]
+
+[tool.setuptools.package-data]
+dirt2conv = ["frida_agent.js"]

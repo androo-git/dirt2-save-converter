@@ -1,0 +1,4 @@
+-r requirements.txt
+# only for the reverse-engineering tools in tools/
+capstone>=5
+pycryptodome>=3.18

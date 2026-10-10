@@ -1,0 +1,21 @@
+# local configuration
+.env
+
+# personal save data, backups, logs, analysis output
+work/
+samples/
+*.jsonl
+*_stats.json
+
+# save game files (never commit anyone's saves)
+**/Autosave*/
+**/Xbox360/
+
+# python
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
