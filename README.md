@@ -13,7 +13,7 @@ Move your **Colin McRae: DiRT 2** (2009) career from the Xbox 360 to the PC vers
 | What | Notes |
 |---|---|
 | **DiRT 2 for PC** | Recommended: **Rohan Kar's DiRT 2 copy on archive.org**. The tool was built and tested against that build (`dirt2_game.exe`, 23,090,480 bytes, SHA-256 `49B1E00E…EB54FE48`). The tool checks the exe before it does anything and refuses to run on a different build. |
-| **DiRT 2 for Xbox 360**, plus the console that holds your save | |
+| **DiRT 2 for Xbox 360** | Plus the console that holds your save. |
 | **A USB mass storage device** | A USB stick or drive that the Xbox 360 can use as storage. This is how the save gets from the console to the PC. |
 | **A Windows PC with Python 3.9 or newer** | Get Python from [python.org](https://www.python.org/downloads/) and tick "Add python.exe to PATH" during install. |
 
@@ -171,3 +171,4 @@ Or if you wish to manually backup the save file - keep a copy of the original sa
 
 - [ ] Test and confirm game works with unmodified retail copies of Dirt 2 for PC.
 - [ ] Create a dirt2-save-converter.exe with a GUI to make the process more friendly.
+- [ ] Add functionality to convert PC save to xbox 360 friendly format. 
